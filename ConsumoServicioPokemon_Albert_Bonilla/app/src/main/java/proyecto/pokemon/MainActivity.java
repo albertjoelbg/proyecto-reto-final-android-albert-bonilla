@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void iniciar(View v)
+     public void iniciar(View v)
     {
             if(edtNombre.getText().toString().equals("") || edtTipo.getText().toString().equals(""))
             {
@@ -37,21 +37,26 @@ public class MainActivity extends ActionBarActivity {
                         valido = true;
                     }
                 }
+
+                if(valido == true)
+                {
+                    valido = false;
+                    edtNombre.setText("");
+                    edtTipo.setText("");
+                    Intent nuevoform=new Intent(MainActivity.this, VisualizarLista.class);
+                    startActivity(nuevoform);
+                }
+                else{
+                    Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
+                }
             }
 
-            if(valido == true)
-            {
-                Intent nuevoform=new Intent(MainActivity.this, VisualizarLista.class);
-                startActivity(nuevoform);
-            }
-            else{
-                Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
-            }
+
     }
-
 
     public void borrar(View v)
     {
+        valido = false;
         edtNombre.setText("");
         edtTipo.setText("");
     }
